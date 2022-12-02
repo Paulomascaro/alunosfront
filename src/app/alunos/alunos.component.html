@@ -1,0 +1,36 @@
+<div class="container mt-5 main">
+    <div class="columns">
+      <div class="column">
+        <h1 class="title">Alunos</h1>
+      </div>
+    </div>
+    <div class="column btn-novo">
+        <button class="button is-info" (click)="adicionarAluno()">Novo Aluno</button>
+    </div>
+    <table class="table is-bordered is-striped">
+      <thead>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Endereço</th>
+        <th>Sexo</th>
+        <th>Email</th>
+        <th>Periodo</th>
+        <th>Ações</th>
+      </thead>
+      
+      <tbody>
+        <tr *ngFor="let aluno of alunos">
+          <td>{{aluno.name}}</td>
+          <td>{{aluno.idade}}</td>
+          <td>{{aluno.endereco}}</td>
+          <td>{{aluno.sexo}}</td>
+          <td>{{aluno.email}}</td>
+          <td>{{aluno.periodo}}</td>
+          <td class="acoes">
+            <button class="button is-link" (click)="editarAluno(aluno)">Editar</button>
+            <button class="button is-danger" (click)="deletaAluno(aluno)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div> 
