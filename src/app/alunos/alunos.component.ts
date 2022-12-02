@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Aluno } from '../model/aluno';
 import { WebService } from '../web.service';
 
@@ -9,10 +10,9 @@ import { WebService } from '../web.service';
 })
 export class AlunosComponent implements OnInit {
 
-
   alunos!: Aluno[]
 
-  constructor(private web: WebService) { }
+  constructor(private web: WebService, private router: Router) { }
 
   ngOnInit(): void {
     this.web.getAlunos().subscribe((response)=>{
@@ -22,24 +22,30 @@ export class AlunosComponent implements OnInit {
       }
     })
 
-    // this.web.setAluno(aluno: Aluno).subscribe((response)=> {
-    //   if(response.ok) {
-    //     this.aluno = response.body!
-    //     console.log(response.body)
-    //   }
-    // })
   }
 
   adicionarAluno () {
-    console.log("entrou");  
+  this.router.navigate(["cadastrar"])
+    console.log("cadastrar");  
   }
 
   deletaAluno(aluno: Aluno) {
-    console.log(aluno)
+    this.web.deletaAlunoById(aluno).subscribe((response)=>{
+      if(response.ok){
+        alert("Deletado com Sucesso!")
+        this.alunos.forEach((alunobuscado)=>{
+          if(alunobuscado.id == aluno.id) {
+            let index = this.alunos.indexOf(aluno)
+            this.alunos.splice(index, 1)
+          }
+        }) 
+      }
+    })
   }
 
   editarAluno(aluno: Aluno) {
-    this.web.setAluno(aluno)
+    this.router.navigate(["atualizar", aluno.id])
+    // this.web.setAluno(aluno)
   }
 
 }

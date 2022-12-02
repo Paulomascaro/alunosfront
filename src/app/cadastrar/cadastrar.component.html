@@ -1,0 +1,41 @@
+<div class="m-6">
+  <button class="button is-primary" routerLink="/alunos">Voltar página Inicilal</button>
+  <br>
+  <form #salvarForm="ngForm" (submit)="salvarAluno(salvarForm)">
+      <ng-template [ngIf]="aluno != null">
+          <div class="field">
+            <label class="label">Nome do Aluno</label>
+            <input type="text" class="input is-info" name="nome" [(ngModel)]="aluno.name" required>
+          </div>
+          <div class="field">
+            <label class="label">Idade </label>
+            <input type="number" class="input is-info" name="idade" [(ngModel)]="aluno.idade" required>
+          </div>
+          <div class="field">
+              <label class="label">Endereço </label>
+              <input type="text" class="input is-info" name="endereco" [(ngModel)]="aluno.endereco" required>
+          </div>
+          <div class="field">
+              <label class="label">Sexo </label>
+              <select type="text" class="input is-info" name="sexo" [(ngModel)]="aluno.sexo" required>
+                  <option [ngValue]="'0'">MASCULINO</option>
+                  <option [ngValue]="'1'">FEMININO</option>
+                </select>
+            </div>
+          <div class="field">
+            <label class="label">Email</label>
+            <textarea type="text" class="input is-info" name="email" [(ngModel)]="aluno.email" required></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label">Periodo</label>
+            <select type="text" class="input is-info" name="periodo" [(ngModel)]="aluno.periodo" required>
+              <option [ngValue]="'0'">MANHA</option>
+              <option [ngValue]="'1'">TARDE</option>
+              <option [ngValue]="'2'">NOITE</option>
+            </select>
+          </div>
+          <button type="submit" class="button is-link md-8">Cadastrar</button>
+      </ng-template>
+    </form>
+</div>
